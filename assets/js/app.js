@@ -1,4 +1,6 @@
 console.log('JS Connected');
+// API key
+const API_KEY = "12bbb864e1faecf33a4bc60505780bcf";
 
 // Grab DOM Elements
 const searchForm = document.getElementById("search-form");
@@ -24,3 +26,33 @@ historyEl.addEventListener("click", (event) => {
         fetchAndRenderWeather(location);
     }
 });
+
+// convert location to lat/lon via geocoding api
+async function getCoordinates(location) {
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
+    city
+    )}&limit=1&appid=${API_KEY}`;
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Geocoding request failed");
+    }
+
+    const data = await response.json();
+    if (data.length === 0) {
+        throw new Error("No location found for that city");
+    }
+
+    const {
+        lat,
+        lon,
+        name
+    } = data[0];
+    return {
+        lat,
+        lon,
+        name
+    };
+}
+
+// lat/lon for 3 hour and 5 day forecast
