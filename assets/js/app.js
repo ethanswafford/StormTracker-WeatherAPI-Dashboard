@@ -30,7 +30,7 @@ historyEl.addEventListener("click", (event) => {
 // convert location to lat/lon via geocoding api
 async function getCoordinates(location) {
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
-    city
+    location
     )}&limit=1&appid=${API_KEY}`;
 
     const response = await fetch(url);
@@ -56,3 +56,16 @@ async function getCoordinates(location) {
 }
 
 // lat/lon for 3 hour and 5 day forecast
+async function getForecast(lat, lon) {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Forecast request failed");
+    }
+
+    const data = await response.json();
+    return data;
+}
+
+// fetch and render everything to the DOM
