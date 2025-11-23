@@ -15,4 +15,12 @@ searchForm.addEventListener("submit", (event) => {
     fetchAndRenderWeather(location);
     addLocationToHistory(location);
     locationEl.value = "";
-})
+});
+
+// history event
+historyEl.addEventListener("click", (event) => {
+    if (event.target.matches(".history-btn")) {
+        const location = event.target.dataset.city;
+        fetchAndRenderWeather(location);
+    }
+});
