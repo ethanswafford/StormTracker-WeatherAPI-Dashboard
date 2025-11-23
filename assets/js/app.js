@@ -91,3 +91,45 @@ async function fetchAndRenderWeather(location) {
         alert(error.message);
     }
 }
+
+// Data Processing
+function processForecastData(forecastData) {
+    const list = forecastData.list;
+
+    // Current conditions (first item)
+    const current = list[0];
+
+    // Build a map of date -> list of entries for that date
+    const byDate = {};
+    list.forEach((item) => {
+        const [date, time] = item.dt_txt.split(" ");
+        console.log("Time: ", time);
+        if (!byDate[date]) byDate[date] = [];
+        byDate[date].push(item);
+    });
+
+    // the next 5 days
+    const dates = Object.keys(byDate);
+
+    const nextFiveDates = dates.slice(0, 5);
+
+    const daily = nextFiveDates.map((date) => {
+        const entries = byDate[date];
+
+        // Try to find the entry closest to 12:00:00
+        let target = entries.find((entry) => entry.dt_txt.includes("12:00:00"));
+        if (!target) {
+            // fallback: just pick the middle one or first
+            target = entries[Math.floor(entries.length / 2)] || entries[0];
+        }
+
+        return target;
+    });
+
+    return {
+        current,
+        daily
+    };
+}
+
+// render data to current weather card
