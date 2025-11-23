@@ -133,3 +133,43 @@ function processForecastData(forecastData) {
 }
 
 // render data to current weather card
+function renderCurrentWeather(cityName, current) {
+    const date = new Date(current.dt_txt);
+    const iconCode = current.weather[0].icon;
+    const description = current.weather[0].description;
+
+    currentWeatherEl.innerHTML = `
+    <h2>
+      ${cityName} (${date.toLocaleDateString()})
+      <img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="${description}" />
+    </h2>
+    <p><strong>Temperature:</strong> ${current.main.temp.toFixed(0)} °F</p>
+    <p><strong>Wind:</strong> ${current.wind.speed.toFixed(1)} MPH</p>
+    <p><strong>Humidity:</strong> ${current.main.humidity}%</p>
+  `;
+}
+
+// 5 day forecast cards
+function renderForecast(daily) {
+    forecastContainer.innerHTML = ""; // clear old cards
+
+    daily.forEach((entry) => {
+        const date = new Date(entry.dt_txt);
+        const iconCode = entry.weather[0].icon;
+        const description = entry.weather[0].description;
+
+        const card = document.createElement("div");
+        card.classList.add("card", "forecast-card");
+        card.innerHTML = `
+      <h3>${date.toLocaleDateString()}</h3>
+      <img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="${description}" />
+      <p><strong>Temp:</strong> ${entry.main.temp.toFixed(0)} °F</p>
+      <p><strong>Wind:</strong> ${entry.wind.speed.toFixed(1)} MPH</p>
+      <p><strong>Humidity:</strong> ${entry.main.humidity}%</p>
+    `;
+
+        forecastContainer.appendChild(card);
+    });
+}
+
+// localstorage for history
