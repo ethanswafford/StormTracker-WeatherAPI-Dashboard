@@ -115,10 +115,62 @@ header h1 {
   padding-bottom: 0.25rem;
 }
 
-/* Weather display */
 .weather-display {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+#search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#search-form label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+#city-input {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: #020617;
+  color: var(--text);
+  outline: none;
+}
+
+#city-input::placeholder {
+  color: #6b7280;
+}
+
+#city-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+}
+
+#search-form button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  color: #0b1120;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  box-shadow: 0 8px 15px rgba(15, 23, 42, 0.6);
+}
+
+#search-form button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.7);
+}
+
+#search-form button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.7);
 }
