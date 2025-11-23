@@ -68,4 +68,26 @@ async function getForecast(lat, lon) {
     return data;
 }
 
-// fetch and render everything to the DOM
+// fetch and get ready to render everything to the DOM
+async function fetchAndRenderWeather(location) {
+    try {
+        const {
+            lat,
+            lon,
+            name
+        } = await getCoordinates(location);
+        const forecastData = await getForecast(lat, lon);
+
+        // forecastData.list is every 3 hours for 5 days
+        const {
+            current,
+            daily
+        } = processForecastData(forecastData);
+
+        renderCurrentWeather(name, current);
+        renderForecast(daily);
+    } catch (error) {
+        console.log(error);
+        alert(error.message);
+    }
+}
