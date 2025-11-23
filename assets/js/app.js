@@ -173,3 +173,45 @@ function renderForecast(daily) {
 }
 
 // localstorage for history
+const STORAGE_KEY = "weatherSearchHistory";
+
+function loadHistory() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    try {
+        return JSON.parse(raw);
+    } catch {
+        return [];
+    }
+}
+
+function saveHistory(history) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+}
+
+function addLocationToHistory(location) {
+    let history = loadHistory();
+    const normalized = location.toLowerCase();
+    if (history.some((c) => c.toLowerCase() === normalized)) return;
+
+    // add to front
+    history.unshift(location);
+    history = history.slice(0, 8);
+
+    saveHistory(history);
+    renderHistory();
+}
+
+// render history
+function renderHistory() {
+    const history = loadHistory();
+    historyContainer.innerHTML = "";
+
+    history.forEach((location) => {
+        const btn = document.createElement("button");
+        btn.classList.add("history-btn");
+        btn.textContent = location;
+        btn.dataset.city = location;
+        historyContainer.appendChild(btn);
+    });
+}
