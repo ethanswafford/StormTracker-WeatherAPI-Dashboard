@@ -165,6 +165,7 @@ header h1 {
 }
 
 #search-form button:hover {
+  background-color: white;
   filter: brightness(1.05);
   transform: translateY(-1px);
   box-shadow: 0 12px 22px rgba(15, 23, 42, 0.7);
@@ -197,7 +198,7 @@ header h1 {
 }
 
 .history-btn:hover {
-  background: lightskyblue;
+  background: rgb(8, 44, 152);
   transform: translateY(-1px);
   border-color: var(--accent);
 }
@@ -254,4 +255,29 @@ header h1 {
 .forecast-card img {
   display: block;
   margin: 0.25rem 0 0.35rem;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 0.8rem 0.9rem;
+  }
 }
