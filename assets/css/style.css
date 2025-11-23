@@ -148,7 +148,7 @@ header h1 {
 
 #city-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 0 1px rgba(35, 87, 110, 0.4);
 }
 
 #search-form button {
@@ -173,4 +173,85 @@ header h1 {
 #search-form button:active {
   transform: translateY(1px) scale(0.98);
   box-shadow: 0 4px 8px rgba(15, 23, 42, 0.7);
+}
+
+#history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.history-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background: #020617;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, transform 0.1s ease,
+    border-color 0.15s ease;
+}
+
+.history-btn:hover {
+  background: lightskyblue;
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.card {
+  background: lightslategray;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+#current-weather h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+#current-weather img {
+  width: 50px;
+  height: 50px;
+}
+
+#current-weather p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.forecast-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.forecast-card {
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.forecast-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.forecast-card img {
+  display: block;
+  margin: 0.25rem 0 0.35rem;
 }
