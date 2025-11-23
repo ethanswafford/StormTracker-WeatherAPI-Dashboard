@@ -20,7 +20,7 @@ searchForm.addEventListener("submit", (event) => {
 });
 
 // history event
-historyEl.addEventListener("click", (event) => {
+historyContainer.addEventListener("click", (event) => {
     if (event.target.matches(".history-btn")) {
         const location = event.target.dataset.city;
         fetchAndRenderWeather(location);
